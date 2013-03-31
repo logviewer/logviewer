@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://192.168.1.41:8000/search/network/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>LogViewer</title>
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+            }
+        </style>
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="./LogViewer_files/jquery.min.js"></script><style type="text/css"></style>
+        <style type="text/css" media="screen">
+            .dataTables_info { padding-top: 0; }
+            .dataTables_paginate { padding-top: 0; }
+            .css_right { float: right; }
+            #example_wrapper .fg-toolbar { font-size: 0.8em }
+            #theme_links span { float: left; padding: 2px 10px; }
+            #example_wrapper { -webkit-box-shadow: 2px 2px 6px #666; box-shadow: 2px 2px 6px #666; border-radius: 5px; min-width:1300px }
+            #example tbody {
+                border-left: 1px solid #AAA;
+                border-right: 1px solid #AAA;
+            }
+            #example thead th:first-child { border-left: 1px solid #AAA; }
+            #example thead th:last-child { border-right: 1px solid #AAA; }
+        </style>   
+        <link rel="stylesheet" type="text/css" href="./LogViewer_files/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="./LogViewer_files/DT_bootstrap.css">
+
+        <script type="text/javascript" src="./LogViewer_files/jquery.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./LogViewer_files/jquery.dataTables.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./LogViewer_files/jquery.dataTables.bootstrap.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./LogViewer_files/jquery.contextmenu.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./LogViewer_files/jquery.rightClick.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./LogViewer_files/cdirectTable.js" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                              $('#table_id').dataTable( {"sPaginationType": "full_numbers"} ); 
+                              });
+</script>
+<script src="./LogViewer_files/bootstrap-dropdown.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="">LogViewer</a>
+                    <ul class="nav">
+                        <li><a href="" class="">Home</a></li>
+                        <li class="dropdown">
+                        <a href="http://192.168.1.41:8000/search/network/#" class="dropdown-toggle" data-toggle="dropdown">Log Streams<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="">Network</a></li> 
+                        </ul>
+                        </li>
+                        <li><a href="">Manage Filters</a></li>
+                        <li><a href="">Settings</a></li>
+                    </ul>
+                    <ul class="nav" style="float:right;">
+                        <li><a href="" class="">Admin</a></li>
+                        <li><a href="" class="">Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            
+
+<script type="text/javascript" src="./LogViewer_files/ajax.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+      $("#example").cdirectTable();
+      });
+     
+</script>
+
+
+<table id="example" style="table-layout:fixed" border="" class="table table-bordered table-striped dataTable" aria-describedby="example_info"><thead><tr role="row"><th class="header headerSortUp" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 167px;" aria-sort="descending" aria-label="LOGDATE: activate to sort column ascending">LOGDATE</th><th class="header" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 167px;" aria-label="PROTO: activate to sort column descending">PROTO</th><th class="header" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 167px;" aria-label="ACTION: activate to sort column descending">ACTION</th><th class="header" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 168px;" aria-label="SRC_IP: activate to sort column descending">SRC_IP</th><th class="header" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 168px;" aria-label="SRC_PORT: activate to sort column descending">SRC_PORT</th><th class="header" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 168px;" aria-label="DST_IP: activate to sort column descending">DST_IP</th><th class="header" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 168px;" aria-label="DST_PORT: activate to sort column descending">DST_PORT</th></tr></thead><tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd"><td class=" sorting_1">2013/03/31 16:39:48</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.72</td><td class="">41742</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="even"><td class=" sorting_1">2013/03/31 16:45:40</td><td class="">TCP</td><td class="">DROP</td><td class="">192.168.1.38</td><td class="">41744</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="odd"><td class=" sorting_1">2013/03/31 16:24:48</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">41766</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="even"><td class=" sorting_1">2013/03/31 16:21:40</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">41700</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="odd"><td class=" sorting_1">2013/03/31 16:15:48</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">41542</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="even"><td class=" sorting_1">2013/03/31 16:13:59</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">41505</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="odd"><td class=" sorting_1">2013/03/31 16:13:44</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">41499</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="even"><td class=" sorting_1">2013/03/31 15:18:32</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">39829</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="odd"><td class=" sorting_1">2013/03/31 15:12:40</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">39711</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="even"><td class=" sorting_1">2013/03/31 14:37:02</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">38972</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="odd"><td class=" sorting_1">2013/03/31 14:31:36</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">38862</td><td class="">192.168.1.41</td><td class="">22</td></tr><tr class="even"><td class=" sorting_1">2013/03/31 14:18:24</td><td class="">TCP</td><td class="">ACCEPT</td><td class="">192.168.1.38</td><td class="">38556</td><td class="">192.168.1.41</td><td class="">22</td></tr></tbody></table><div class="row-fluid"></div></div>	
+
+
+
+            <p></p><hr><p></p>
+            <center>
+            <footer class="row">
+                <p>
+                © <a href="http://logviewer.co/">ForkBomb</a>
+                </p>
+            </footer></center>
+
+         <!-- container -->
+
+    
+
+<table cellspacing="0" cellpadding="0" style="display: none;"><tbody><tr><td><div class="context-menu context-menu-theme-default"><div class="context-menu-item menu3-custom-item" title="This is the hover title"><div class="context-menu-item-inner" style="">Show Alert</div></div></div></td></tr></tbody></table><div class="context-menu-shadow" style="display: none; position: absolute; z-index: 9998; opacity: 0.2; background-color: black;"></div></body></html>

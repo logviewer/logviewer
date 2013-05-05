@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/datepicker.css" />
+<script src="/static/js/datepicker.js"></script>
+<script src="/static/js/filtermanage.js"></script>
+
+
+<div align="center" class="container-fluid" >
+<table align="center" border=0>
+<tr><td>
+    <form name="addfilter" action="/managefilters/addfilter" method="POST">
+        <table id="filtercreatetable" border="0">
+            <tr>
+                <td valign="top" >
+                <div class="container-fluid">
+                    Saved Filter List<br>
+                <select multiple id="current_filters">
+                    {{filter_names|safe}}    
+                </select><br><center>
+                <button class="btn btn-primary" type="button" value="Edit">Edit</button>
+                <button class="btn btn-primary" type="button" value="Delete"/>Delete</button>
+                </center>
+                <div>
+                </td>
+            </tr>
+     </table>
+</div>
+
+{{filter_forms|safe}}    
+</form>
+{% endblock %}
+

@@ -1,0 +1,3 @@
+{{ object.logdate }}
+{{ object.machine }}
+{{ object.content }}

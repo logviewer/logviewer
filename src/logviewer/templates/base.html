@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>LogViewer</title>
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+            }
+        </style>
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <style type="text/css" media="screen">
+            .dataTables_info { padding-top: 0; }
+            .dataTables_paginate { padding-top: 0; }
+            .css_right { float: right; }
+            #example_wrapper .fg-toolbar { font-size: 0.8em }
+            #theme_links span { float: left; padding: 2px 10px; }
+            #example_wrapper { -webkit-box-shadow: 2px 2px 6px #666; box-shadow: 2px 2px 6px #666; border-radius: 5px; min-width:1300px }
+            #example tbody {
+                border-left: 1px solid #AAA;
+                border-right: 1px solid #AAA;
+            }
+            #example thead th:first-child { border-left: 1px solid #AAA; }
+            #example thead th:last-child { border-right: 1px solid #AAA; }
+        </style>   
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/DT_bootstrap.css" />
+
+        <script type="text/javascript" src="/static/js/jquery.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/jquery.dataTables.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/jquery.dataTables.bootstrap.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/jquery.contextmenu.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/jquery.rightClick.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/cdirectTable.js" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+
+</script>
+{% bootstrap_javascript_tag "dropdown" %}
+{% block extra_head %}{% endblock %}
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">LogViewer</a>
+                    <ul class="nav">
+                        <li><a href="/" class="">Home</a></li>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log Streams<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% load metadata_tags %}
+                            {% show_metadata %}
+                        </ul>
+                        </li>
+                        <li><a href="/managefilters">Manage Filters</a></li>
+                        <li><a href="/settings">Settings</a></li>
+                    </ul>
+                    <ul class="nav"style="float:right;">
+                        <li><a href="/admin" class="">Admin</a></li>
+                        <li><a href="{% url logviewer.views.logout.logout_action %}" class="">Log Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            {% block content %}{% endblock %}
+
+            <p><hr></p>
+            <center>
+            <footer class="row">
+                <p>
+                &copy; <a href="http://logviewer.co">ForkBomb</a>
+                </p>
+            </footer></center>
+
+        </div> <!-- container -->
+
+    </body>
+</html>

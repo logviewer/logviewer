@@ -104,29 +104,7 @@ def dsearch(request, log_type, log_date):
         pass
 
     return HttpResponse(json.dumps(return_json, cls=DjangoJSONEncoder), mimetype="application/json")
-    #conn = pyes.ES(LOGVIEWER_SERVER)
 
-    #mdata = metadata.MetaData()
-    #metadata_dict = mdata.read_ini_file()
-
-    #s = pyes.RangeQuery(qrange=pyes.ESRange('logdate'))
-
-    #log_type = log_type.lower()
-    #if log_type not in metadata_dict:
-    #    return HttpResponse(json.dumps('There is no log type as %s' % log_type), mimetype="application/json")
-
-    #return_json = {}
-    #return_json['column'] = metadata_dict[log_type]['shown_columns'].split(',')
-    #return_json['data'] = []
-
-    #for log in conn.search(query=s,
-    #                       indices=['logviewer'],
-    #                       doc_types=[log_type],
-    #                       sort='logdate:desc',
-    #                       size=int(metadata_dict[log_type]['log_count'])):
-    #    return_json['data'].append(log)
-
-    #return HttpResponse(json.dumps(return_json, cls=DjangoJSONEncoder), mimetype="application/json")
 
 @login_required(login_url='/login')
 def dsearch_columns(request, log_type):

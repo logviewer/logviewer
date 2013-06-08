@@ -7,6 +7,7 @@ from bootstrap_toolkit.widgets import BootstrapUneditableInput
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
+from logviewer.logviewer_settings import LOGVIEWER_SERVER
 '''
     Static search module.
 
@@ -20,8 +21,6 @@ from django.contrib.auth.decorators import login_required
     @copyright This project is released under BSD license
     @date 2013/03/31
 '''
-
-LOGVIEWER_SERVER = '127.0.0.1:9200'
 
 @login_required(login_url='/login')
 def search(request, log_type):

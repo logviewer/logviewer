@@ -19,10 +19,11 @@ class Filter(models.Model):
     '''
     filter_name = models.CharField(max_length = 50, primary_key = True)
     
-class FilterOptions(Filter):
+class FilterOptions(models.Model):
     '''
         This filter allows users to write regular expression filters
     '''
+    filter_name = models.ForeignKey('Filter')
     column = models.CharField(max_length = 50, null = False)
     regex = models.CharField(max_length = 50, null = False)
 

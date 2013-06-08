@@ -16,15 +16,36 @@ $(document).ready(function () {
     //dataTable.fnClearTable(this);
     //logtable.fnDraw()
     //}*/
+
     $('#example').cdirectTable();
     //$("<button id=\"startStop\" Class=\"btn btn-primary\" name=\"start\" value=\"start\" style=\"alignment:center;\" onclick=\"startStopLogs()\">Start</button>").appendTo('#example_length');
-    $("<input type=\"submit\" id=\"startStop\" Class=\"btn-danger\" value=\"Stop\" onclick=\"startStopLogs()\">").appendTo('#example_length');    
-    
+    $.get(
+          "/managefilters/getfilters",
+          {},
+              function(data) {
+                var buttons = '<center><table id="streaminputs" border="0"><tr>';
+                buttons += '<td valign="top" width="200"><input type="submit" id="startStop" Class="btn-danger" style="height: 30px;" value="Stop" onclick="startStopLogs()"></td>';
+                buttons += '<td valign="top">'+data+'</td>';
+                buttons += '<td valign="top" width=200><input type="submit" id="applyFilter" Class="btn-success" value="Apply" style="height: 30px;" onclick="applyFilter()"></td>';
+                buttons += '<td valign="top" ><input type="text" id="filterName" class="input-small" style="float:right;"></td>';
+                buttons += '<td valign="top" ><input type="submit" id="SaveFilter" Class="btn-success" style="height: 30px;" value="SaveFilter" onclick="saveFilter()"></td>';
+                buttons += '</tr></table></center>';
+                $(buttons).appendTo('#example_length');
+             }
+    );
+
+
+    //$("<input type=\"submit\" id=\"startStop\" Class=\"btn-danger\" value=\"Stop\" onclick=\"startStopLogs()\">").appendTo('#example_length');    
+    //$("<input type=\"submit\" id=\"applyFilter\" Class=\"btn-danger\" value=\"Apply\" onclick=\"applyFilter()\">").appendTo('#example_length');    
+    //$("<select><option value=\"choose\">Choose</option></select>").appendTo('#example_length');
+    //$("<input type=\"submit\" id=\"SaveFilter\" Class=\"btn-danger\" style=\"float:right;\" value=\"SaveFilter\" onclick=\"saveFilter()\">").appendTo('#example_length');
+    //$("<input type=\"text\" id=\"filterName\" class=\"input-small\" style=\"float:right;\">").appendTo('#example_length');
+
     timerID = setInterval( function(){
         $('#example').dataTable().fnClearTable();
     },3000);
     /*$(document).bind("contextmenu", function(event) {
-        $("<div class='custom-menu'>Custom menu</div>")
+      $("<div class='custom-menu'>Custom menu</div>")
         .appendTo("body")
         .css({top: event.pageY + "px", left: event.pageX + "px"
         });
@@ -159,4 +180,91 @@ function startStopLogs(){
     
 }
 
+function applyFilter(){
+    /*var filterIndexes = [1];
+    var deneme  = "deneme";
+    var oDataTable = $('#example').dataTable();
+    $('thead .cddt-filter').each( function ( i ) {
+         $('td:eq(1) input', this).val($('#filterName').val());
+         var searchText = $('#filterName').val();
+         oDataTable.fnFilter(searchText, 1);
+    });*/
+    var oDataTable = $('#example').dataTable();
+    var e = document.getElementById('filterdropdown')
+    $.get
+    (
+     "/managefilters/getfilterinfo",
+     {filter_name : e.options[e.selectedIndex].value},
+     function(data){
+        var filterTuple = data.split(";");
+        for(var i = 0; i < filterTuple.length; i++){
+            var fname = filterTuple[i].split(',')[0];
+            var finfo = filterTuple[i].split(',')[1];
+            
+            var cnumber = -1;
+            $('thead tr th').each( function ( i ) {
+                    if($(this).text() == fname){
+                        cnumber = i;
+                    }
+           });            
+
+            $('thead .cddt-filter').each( function ( i ) {
+                $('td:eq('+String(cnumber)+') input', this).val(finfo);
+                var searchText = finfo;
+                oDataTable.fnFilter(searchText, cnumber);
+            });
+        }
+     }
+    );
+}
+
+function saveFilter(){
+        var searchText = new Array();
+        var searchIndex = new Array();
+        var searchColumns = new Array();
+        var oDataTable = $('#example').dataTable();
+        $('thead .cddt-filter td').each( function ( i ) {
+            var tempText = $('input', this).val();
+            if(tempText != "")
+            {
+                searchIndex.push(i);
+                searchText.push(tempText);
+            }
+        });
+
+        $('thead tr th').each( function ( i ) {
+            //if(jQuery.inArray(i, searchIndex)){
+            for(var j = 0; j < searchIndex.length; j++){
+                if(i == searchIndex[j]){
+                searchColumns.push($(this).text());
+                }
+            }
+        });
+
+        var filterText = document.getElementById('filterName').value;
+        var filterInfo = "";
+        for(var i = 0; i < searchIndex.length; i++){
+            filterInfo += searchColumns[i] + "," + searchText[i];
+            if(i != searchIndex.length - 1){
+                filterInfo += ";";
+            }
+        }
+
+        if(filterText == ""){
+            alert("Enter a filter name!")
+        }
+        else if(filterInfo == ""){
+            alert("Enter a filter");
+        }
+        else{
+           $.get(
+            "/managefilters/savefilter",
+            {filter_name : filterText,
+             filter_info : filterInfo},
+            function(data) {
+                alert(data);
+            }
+        ); 
+        }       
+}
 

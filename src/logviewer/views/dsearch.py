@@ -11,6 +11,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
+from logviewer.logviewer_settings import LOGVIEWER_SERVER
 '''
     Dynamic search module.
 
@@ -24,8 +25,6 @@ from django.core.serializers.json import DjangoJSONEncoder
     @copyright This project is released under BSD license
     @date 2013/03/31
 '''
-
-LOGVIEWER_SERVER = '127.0.0.1:9500'
 
 @login_required(login_url='/login')
 def dsearch(request, log_type, log_date):
@@ -104,7 +103,6 @@ def dsearch(request, log_type, log_date):
         pass
 
     return HttpResponse(json.dumps(return_json, cls=DjangoJSONEncoder), mimetype="application/json")
-
 
 @login_required(login_url='/login')
 def dsearch_columns(request, log_type):

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/datepicker.css" />
+<script src="/static/js/datepicker.js"></script>
+<script src="/static/js/settings.js"></script>
+
+<div id="main_div" align="center" class="container-fluid" >
+    <div class="row">
+    <div class="span3 bs-docs-sidebar">
+    <ul id="settings_ul" class="nav nav-list bs-docs-sidenav affix">
+        <li id="server_settings_l" class="active"><a href="#"><i class="icon-chevron-right"></i> Server Settings</a></li>
+        <li id="log_settings_l"><a href="#"><i class="icon-chevron-right"></i> Log Settings</a></li>
+    </ul>
+    </div>
+    </div>
+
+    <div id="settings_div">
+        <div id="server_settings" style="visibility:show">
+            <form method="post">{% csrf_token %}
+            <div class="row">
+                Elastic Search Server :
+                <input id="server_ip" type="text" value="{{ ip }}">
+            </div>
+            <div class="row">
+                <input type="button" class="btn-primary" value="Save" onclick="save_server();">
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="log_settings" style="visibility:hidden">
+        <div class="btn-group">
+            <a id="log_dropdown" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Choose Log Type
+                <span class="caret"></span>
+            </a>
+            <ul id="log_types" class="dropdown-menu">
+            </ul>
+        </div>
+            <form method="post">{% csrf_token %}
+                <table border="0">
+                    <div class="row">
+                        <tr>
+                            <td>Show on index page:</td>
+                            <td><input id="settings_index" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>Log column splitting delimiter:</td>
+                            <td><input id="settings_delimiter" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>Shown columns on page:</td>
+                            <td><input id="settings_shown" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>Filtered columns:</td>
+                            <td><input id="settings_filter" type="text" value=""></td>
+                        </tr>
+                    </div>
+                </table>
+                <div class="row">
+                    <input type="button" class="btn-primary" value="Save" onclick="save_log_settings();">
+                </div>
+            </form>
+    </div>
+
+</div>
+
+</form>
+{% endblock %}
+

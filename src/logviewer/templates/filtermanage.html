@@ -6,10 +6,8 @@
 <script src="/static/js/filtermanage.js"></script>
 
 
-<div align="center" class="container-fluid" >
-<table align="center" border=0>
-<tr><td>
-    <form name="addfilter" action="/managefilters/addfilter" method="POST">
+<div id="savedfilters" align="center" class="container-fluid" >
+    <form name="editfilter" id="editfilter" action="/managefilters/editfilter" method="GET">
         <table id="filtercreatetable" border="0">
             <tr>
                 <td valign="top" >
@@ -17,17 +15,20 @@
                     Saved Filter List<br>
                 <select multiple id="current_filters">
                     {{filter_names|safe}}    
-                </select><br><center>
-                <button class="btn btn-primary" type="button" value="Edit">Edit</button>
-                <button class="btn btn-primary" type="button" value="Delete"/>Delete</button>
-                </center>
+                </select><br>
+                <button class="btn btn-primary" type="button" onclick="showfilterform();" value="Edit">Edit</button>
+                <button class="btn btn-primary" type="button" onclick="deletefilter();" value="Delete"/>Delete</button>
                 <div>
                 </td>
             </tr>
-     </table>
-</div>
+        </table><br><br>
+
+        <div id="filterform"></div>
 
 {{filter_forms|safe}}    
+
+</div>
+
 </form>
 {% endblock %}
 

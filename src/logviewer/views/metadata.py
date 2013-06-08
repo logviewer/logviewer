@@ -59,6 +59,27 @@ class MetaData(object):
 
         return type_filter_list
 
+    def write_ini_file(self, log_type, log_dict):
+        '''
+            Writes ini file
+        '''
+        metadata_parser = ConfigParser.ConfigParser()
+        metadata_parser.read(self.metadata_file)
+
+        try:
+            for k in log_dict.keys():
+                metadata_parser.set(log_type, k, log_dict[k])
+
+            with open(self.metadata_file, 'w') as f:
+                metadata_parser.write(f)
+        except Exception as err:
+            with open('/tmp/aaa', 'w') as f:
+                f.write('\n')
+                f.write(str(err))
+            return False
+
+        return True
+
 
 def main():
     '''

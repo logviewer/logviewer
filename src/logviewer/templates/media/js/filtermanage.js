@@ -1,50 +1,50 @@
-$('#logStreams').change(function() {
-    try{
-        var selected = this.value;
+function showfilterform(){
+    var selectbox = document.getElementById("current_filters");
+    var selected = selectbox.options[selectbox.selectedIndex].value;
+
+    var filterform = document.getElementById("filterform");
+    filterform.innerHTML = document.getElementById(selected).innerHTML;
+}
+
+function deletefilter(){
+    var selectbox = document.getElementById("current_filters");
+    var selected = selectbox.options[selectbox.selectedIndex].value;
+    var agree=confirm("Are you sure you want to delete "+selected+"?");
+    if (agree){
+        //delete selected filter from selectbox
+        $("#current_filters option[value='"+selected+"']").remove();
+        $.get(
+          "/managefilters/deletefilter",
+            {filter_name : selected},
+            function(data) {
+                
+                alert(data);
+            }
+        );      
     }
-    catch(err){
-        selected = "datefilter";
+}
+
+function editfilterget(input_id, val){
+    var selectbox = document.getElementById("current_filters");
+    var selected = selectbox.options[selectbox.selectedIndex].value;
+    
+    var inputs = document.getElementById(selected).getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        if(inputs[i].getAttribute('name') == input_id){
+            inputs[i].value = val;      
+            $.get(
+            "/managefilters/editfilter",
+                {filter_name : selected,
+                column_name : inputs[i].getAttribute('name'),   
+                //regex : inputs[i].getAttribute('value'),   
+                regex : val,   
+                },
+                function(data) {
+                    alert(data);
+                }
+            ); 
+        }
     }
-    document.write("deneme");
-    var selectedStream = document.getElementById(selected+ 'columns');
-    var columnNames = selectedStream.InnerHTML.split(",");
-    document.getElementById('filterform').innerHTML = "aaaaaa";
-    /*if (selected == "datefilter"){
-        var table = document.getElementById('dateform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-        $(function() {
-            $( "#startdatepicker" ).datepicker();
-        });
-        $(function() {
-            $( "#enddatepicker" ).datepicker();
-        });
-    }
-    else if (selected == "ipfilter"){
-        var table = document.getElementById('ipform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-    }
-    else if (selected == "regexfilter"){
-        var table = document.getElementById('regexform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-    }
-    else if (selected == "servicefilter"){
-        var table = document.getElementById('serviceform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-    }
-    else if (selected == "actionfilter"){
-        var table = document.getElementById('actionform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-    }
-    else if (selected == "urlfilter"){
-        var table = document.getElementById('urlform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-    }
-    else if (selected == "wordfilter"){
-        var table = document.getElementById('wordform').innerHTML;
-        document.getElementById('filterform').innerHTML = table;
-    }
-    else{
-        alert("Error!")
-    }*/
-});
+        
+}
 

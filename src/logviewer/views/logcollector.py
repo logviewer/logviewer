@@ -18,6 +18,7 @@ from optparse import OptionParser
     @authors http://www.jejik.com/articles/2007/02/a_simple_unix_linux_daemon_in_python/
     @copyright This project is released under BSD license
     @date 2013/03/31
+    @todo Reading from log sockets will be done using twisted instead of multiprocessing, log filtering will be done in an external script, network filtering will be fixed, child crashes will be handled gracefully.
 '''
 
 LOGVIEWER_INDEX='logviewer'

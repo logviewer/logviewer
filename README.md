@@ -1,6 +1,8 @@
 LogViewer
 =========
 
+DO NOT CLONE UNTIL IT IS STABLE!
+
 Real Time Log Viewing Utility
 
 [Site](http://logviewer.co/ "LogViewer")

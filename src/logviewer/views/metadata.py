@@ -13,7 +13,7 @@ import json
     @date 2013/03/31
 '''
 
-METADATA_FILE='/root/logviewer/logviewer/src/logviewer/model/metadata.ini'
+METADATA_FILE='/opt/logviewer/src/logviewer/model/metadata.ini'
 
 class MetaData(object):
     '''

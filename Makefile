@@ -1,6 +1,7 @@
 install:
 	mkdir /opt/logviewer
 	virtualenv --no-site-packages /opt/logviewer/venv
+	/opt/logviewer/venv/bin/easy_install -U distribute
 	/opt/logviewer/venv/bin/easy_install django==1.4.3
 	/opt/logviewer/venv/bin/easy_install django-bootstrap-toolkit
 	/opt/logviewer/venv/bin/easy_install django-static
